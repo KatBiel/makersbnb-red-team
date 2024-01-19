@@ -174,13 +174,6 @@ def add_space():
             person = Account.get(Account.username==session.get('username'))
             listing = Listing(name=name, address=address, description=description, price=price, account=person, image_filename=filename)
 
-            # if 'image' in request.files:
-            #     image = request.files['image']
-            # if image.filename != '':
-            #         filename = secure_filename(image.filename)
-            #         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #         listing.image_filename = filename
-
             listing.save()
             return redirect(f"/listings/{listing.id}")
     return render_template('add_listing.html', account=session.get('username'), form=form)
@@ -313,6 +306,3 @@ def get_bookings():
 # if started in test mode.
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
-
-
-    
